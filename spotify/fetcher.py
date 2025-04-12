@@ -93,10 +93,10 @@ class SpotifyDataFetcher:
 
         return out
 
-    # def fetch_saved_tracks(self, limit: int = MAX_TRACKS_PER_REQUEST) -> List[Track]:
-    #     """ Fetch the user's saved tracks from Spotify """
-    #     saved_tracks = self.spotify.current_user_saved_tracks(limit=limit)
-    #     print(saved_tracks)
+    def fetch_saved_tracks(self, limit: int = MAX_TRACKS_PER_REQUEST) -> List[Track]:
+        """ Fetch the user's saved tracks from Spotify """
+        saved_tracks = self.spotify.current_user_saved_tracks(limit=limit)
+        return self.create_track_list(saved_tracks)
 
     # def fetch_liked_songs(self) -> List[Track]:
     #     pass
