@@ -158,8 +158,8 @@
 - [x] Query for playlists
 - [x] Query for saved albums
 - [x] Query for liked songs
-- [ ] Serialize and export user data
-- [ ] Build `DataSerializer` for pickling
+- [x] Serialize and export user data
+- [x] Build `DataSerializer` for pickling
 
 ---
 
