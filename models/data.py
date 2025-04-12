@@ -80,7 +80,7 @@ class Data:
                  albums: List[Album],
                  liked_songs: List[Track],
                  followed_artists: List[str]):
-        self.liked_songs = liked_songs
-        self.albums = albums
         self.playlists = playlists
+        self.albums = albums
+        self.liked_songs = liked_songs
         self.followed_artists = followed_artists
