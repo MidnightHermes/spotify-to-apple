@@ -98,9 +98,6 @@ class SpotifyDataFetcher:
         saved_tracks = self.spotify.current_user_saved_tracks(limit=limit)
         return self.create_track_list(saved_tracks)
 
-    # def fetch_liked_songs(self) -> List[Track]:
-    #     pass
-
     def fetch_followed_artists(self, limit: int = MAX_ARTISTS_PER_REQUEST) -> List[str]:
         """ Fetch the names of the user's followed artists from Spotify """
         artists = self.spotify.current_user_followed_artists(limit=limit)['artists']['items']

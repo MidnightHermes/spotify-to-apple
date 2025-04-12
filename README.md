@@ -157,8 +157,7 @@
 - [x] Query for followed artists
 - [x] Query for playlists
 - [x] Query for saved albums
-- [x] Query for saved tracks
-- [ ] Query for liked songs
+- [x] Query for liked songs
 - [ ] Serialize and export user data
 - [ ] Build `DataSerializer` for pickling
 
