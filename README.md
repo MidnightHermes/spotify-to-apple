@@ -98,9 +98,9 @@
     │   ├── __init__.py
     │   ├── injector.py              # AppleMusicInjector
     │   └── scripts/                 # AppleScript script templates
-    │       ├── create_playlist.scpt
-    │       ├── add_track.scpt
-    │       ├── favorite_track.scpt
+    │       ├── create_playlist.applescript
+    │       ├── add_track.applescript
+    │       ├── favorite_track.applescript
     │
     ├── serializer/
     │   ├── __init__.py
@@ -131,21 +131,30 @@
     ```python3
     class Track:
         name: str
-        artist: str
+        artist: List[str]
         album: Optional[str]
-        uri: str
+        id: str
 
     class Playlist:
         name: str
+        description: str
+        cover_image: List[Dict[str, Optional[int] | str]]
+        tracks: List[Track]
+
+    class Album:
+        name: str
+        artists: List[str]
+        id: str
         tracks: List[Track]
 
     class Data:
         playlists: List[Playlist]
+        albums: List[Album]
         liked_songs: List[Track]
         followed_artists: List[str]
     ```
 - [ ] Plan error handling and testing
-- [ ] Design human-readable file export format (JSON/Markdown)
+- [x] Design human-readable file export format (JSON/Markdown)
 
 ---
 
