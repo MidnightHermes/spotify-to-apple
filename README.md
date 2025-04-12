@@ -92,7 +92,7 @@
     │
     ├── spotify/
     │   ├── __init__.py
-    │   ├── fetcher.py               # SpotifyDataFetcher
+    │   └── fetcher.py               # SpotifyDataFetcher
     │
     ├── applemusic/
     │   ├── __init__.py
@@ -104,7 +104,7 @@
     │
     ├── serializer/
     │   ├── __init__.py
-    │   ├── serializer.py            # DataSerializer
+    │   └── serializer.py            # DataSerializer
     │
     ├── ui/
     │   ├── __init__.py
@@ -114,7 +114,7 @@
     │       ├── data_select.py
     │       ├── export_options.py
     │       ├── progress_view.py
-    │       └── style.css
+    │       └── styles.css
     │
     ├── logs/
     │   ├── __init__.py
@@ -152,10 +152,13 @@
 ## 🚀 AppalHack Main Tasks
 
 ### 🛠 Backend Functionality
-- [ ] Set up Spotify OAuth
-- [ ] Build `SpotifyAuthManager` class to deal with tokens
-- [ ] Query for playlists and liked songs
+- [x] Set up Spotify OAuth
+- [x] Build `SpotifyAuthManager` class to deal with tokens
 - [ ] Query for followed artists
+- [ ] Query for playlists
+- [ ] Query for saved albums
+- [ ] Query for saved tracks
+- [ ] Query for liked songs
 - [ ] Serialize and export user data
 - [ ] Build `DataSerializer` for pickling
 
