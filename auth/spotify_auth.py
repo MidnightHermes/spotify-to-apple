@@ -26,11 +26,3 @@ class SpotifyAuthManager:
             return not self.auth_manager.get_cached_token()
         # Otherwise, we should open the browser
         return True
-
-    # def get_access_token(self) -> str:
-    #     """ Gets and returns the access token from the SpotifyOAuth object """
-    #     return self.auth_manager.get_access_token(as_dict=False)
-
-    # def refresh_token(self) -> None:
-    #     """ Refreshes the access token for the SpotifyOAuth object """
-        # self.auth_manager.refresh_access_token(True)
