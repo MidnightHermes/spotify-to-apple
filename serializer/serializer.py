@@ -38,4 +38,8 @@ class DataSerializer:
                          filepath: str = DEFAULT_MARKDOWN_PATH,
                          template: str = MARKDOWN_TEMPLATE) -> None:
         """ Save data to a human-readable markdown file """
-        pass
+        with open(filepath, 'w', encoding='utf8') as fp:
+            fp.write(template.format(playlist_section=data.playlists,
+                                     album_section=data.albums,
+                                     liked_section=data.liked_songs,
+                                     artist_section=data.followed_artists))
