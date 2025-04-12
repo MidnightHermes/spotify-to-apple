@@ -154,9 +154,9 @@
 ### 🛠 Backend Functionality
 - [x] Set up Spotify OAuth
 - [x] Build `SpotifyAuthManager` class to deal with tokens
-- [ ] Query for followed artists
-- [ ] Query for playlists
-- [ ] Query for saved albums
+- [x] Query for followed artists
+- [x] Query for playlists
+- [x] Query for saved albums
 - [ ] Query for saved tracks
 - [ ] Query for liked songs
 - [ ] Serialize and export user data
