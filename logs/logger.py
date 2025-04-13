@@ -27,7 +27,7 @@ class Logger:
         """ Print log message and append log message to self.logs """
         log_message = LOG_FORMAT.format(level=level, message=message)
         sleep(float_info.min)
-        print('\033[K' + log_message, end='')
+        print('\033[K' + log_message, end='' if level == "INFO" else '\n')
         self.logs.append(log_message)
         self.log_file.write(log_message)
 

@@ -124,6 +124,8 @@ class UIController(QWidget):
         """ Export data into Apple Music """
         if not self.data:
             self.data = self.serializer.load_from_pickle(self.data)
+        if not self.data:
+            return
 
         selected_options = self.export_screen.get_selected_options()
 
@@ -131,7 +133,7 @@ class UIController(QWidget):
         progress_dialog.show()
         QCoreApplication.processEvents()
 
-        if selected_options['playlists']:
+        if selected_options['playlists'] and self.data.playlists:
             playlists = self.data.playlists
             for playlist in playlists:
                 self.applemusic.create_playlist(playlist.name)
@@ -142,7 +144,7 @@ class UIController(QWidget):
         QCoreApplication.processEvents()
         progress_dialog.update_logs()
 
-        if selected_options['liked songs']:
+        if selected_options['liked songs'] and self.data.albums:
             albums = self.data.albums
             for album in albums:
                 for track in album.tracks:
@@ -153,7 +155,7 @@ class UIController(QWidget):
         QCoreApplication.processEvents()
         progress_dialog.update_logs()
 
-        if selected_options['liked songs']:
+        if selected_options['liked songs'] and self.data.liked_songs:
             liked_songs = self.data.liked_songs
             for track in liked_songs:
                 self.applemusic.search_track(track)

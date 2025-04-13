@@ -185,7 +185,7 @@
 - [x] Build login screen
 - [x] Build data selection screen
 - [ ] Add export options screen
-- [ ] Add AppleScript import options
+- [x] Add AppleScript import options
 - [x] Add progress bar/logging panel
 - [x] Final UI polish with Figma?
 
