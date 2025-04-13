@@ -202,3 +202,8 @@
 - [ ] Plan backend for storing Spotify secret
 - [ ] Choose platform (e.g., AWS)
 - [ ] Test basic Flask app for OAuth handoff
+
+---
+
+## Extra stuff
+- [ ] Cover image support for playlists

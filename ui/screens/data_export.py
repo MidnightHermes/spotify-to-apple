@@ -9,8 +9,8 @@ from PyQt6.QtCore import Qt
 from constants import APP_TITLE, VERSION_NUMBER
 
 
-class DataSelectionScreen(QWidget):
-    """ Prompt the user to select which data to fetch """
+class ExportScreen(QWidget):
+    """ Prompt the user for which data to export """
 
     def __init__(self):
         super().__init__()
@@ -30,7 +30,7 @@ class DataSelectionScreen(QWidget):
         self.checkbox_container.setGeometry(50, 15, 302, 336)
 
         # Content title
-        self.content_text_title = QLabel("Select which data to fetch from Spotify", self.content_widget)
+        self.content_text_title = QLabel("Select which data to import to Apple Music", self.content_widget)
         self.content_text_title.setGeometry(50, 0, 300, 72)
         self.content_text_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.content_text_title.setObjectName('h2')
@@ -47,8 +47,8 @@ class DataSelectionScreen(QWidget):
         self.artists_checkbox.setGeometry(10, 140, 150, 30)
 
         # Content buttons
-        self.fetch_data_button = QPushButton("Fetch Data", self.content_widget)
-        self.fetch_data_button.setGeometry(0, 198, 400, 40)
+        self.export_data_button = QPushButton("Export Data", self.content_widget)
+        self.export_data_button.setGeometry(0, 198, 400, 40)
         self.back_button = QPushButton("Back", self.content_widget)
         self.back_button.setGeometry(150, 248, 100, 40)
 
