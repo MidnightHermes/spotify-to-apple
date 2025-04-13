@@ -39,5 +39,5 @@ class Logger:
         """ Return self.logs """
         return self.logs[-1]
 
-    def __del__(self):
+    def __del__(self) -> None:
         self.log_file.close()
