@@ -14,4 +14,5 @@ tell application "System Events"
 	key code 51 -- delete key
 	-- Search for our song name
 	keystroke songName
+	key code 36
 end tell

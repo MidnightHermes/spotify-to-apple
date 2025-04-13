@@ -1,1 +1,1 @@
-from .injector import AppleMusicInteractor
+from .interactor import AppleMusicInteractor

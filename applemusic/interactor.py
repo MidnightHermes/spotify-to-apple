@@ -1,4 +1,6 @@
 """ Houses the AppleMusicInteractor class """
+import string
+
 import applescript  # type: ignore
 
 from models import Track, Playlist
@@ -18,6 +20,7 @@ class AppleMusicInteractor:
 
     def search_track(self, track: Track) -> None:
         """ Uses AppleScript to open the Music app then simulate keyboard input to search a song """
-        with open('/applemusic/scripts/search_track.applescript', 'r', encoding='utf8') as fp:
-            script = f'set songName to "{track.name} by {track.artists}"' + fp.read()
+        with open('./applemusic/scripts/search_track.applescript', 'r', encoding='utf8') as fp:
+            primary_artist = ''.join(char for char in track.artists[0] if char not in string.punctuation)
+            script = f'set songName to "{track.name} {primary_artist}"' + fp.read()
         applescript.run(script)
