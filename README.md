@@ -173,11 +173,9 @@
 ---
 
 ### 🎶 Apple Music Integration
-- [ ] Write `AppleMusicInjector` wrapper around AppleScript
-- [ ] Create playlists via AppleScript
-- [ ] Add tracks via AppleScript
-- [ ] Favorite liked songs via AppleScript
-- [ ] Log success/failure of each AppleScript command
+- [x] Write `AppleMusicInjector` wrapper around AppleScript
+- [x] Create playlists via AppleScript
+- [x] Search for tracks via AppleScript
 
 ---
 

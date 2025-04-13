@@ -19,4 +19,18 @@ MAX_ARTISTS_PER_REQUEST: int = 20
 DEFAULT_JSON_PATH = "./data/data.json"
 DEFAULT_PICKLE_PATH = "./data/data.pickle"
 DEFAULT_MARKDOWN_PATH = "./data/data.md"
-MARKDOWN_TEMPLATE = """"""
+MARKDOWN_TEMPLATE = """\
+# Spotify to Apple Music Migration
+
+## Playlists:
+{playlist_section}
+
+## Albums:
+{album_section}
+
+## Liked Songs:
+{liked_section}
+
+## Followed Artists:
+{artist_section}
+"""
