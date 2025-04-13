@@ -6,9 +6,20 @@ from constants import SPOTIFY_SCOPES
 class SpotifyAuthManager:
     """ Manages authorization for Spotify """
 
+    _instance = None
+    _initialized = False
+
+    def __new__(cls):
+        """ Ensure Singleton, only one instance may exist """
+        if not hasattr(cls, 'instance'):
+            cls.instance = super(SpotifyAuthManager, cls).__new__(cls)
+        return cls.instance
+
     def __init__(self):
-        self.auth_manager = None
-        self.authorize()
+        if not self.__class__._initialized:
+            self.auth_manager = None
+            self.authorize()
+            self.__class__._initialized = True
 
     def authorize(self) -> None:
         """ Creates SpotifyOAuth object from spotipy to implement Authorization Code Flow """
