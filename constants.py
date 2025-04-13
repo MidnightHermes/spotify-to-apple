@@ -38,3 +38,5 @@ MARKDOWN_TEMPLATE: str = """\
 APP_TITLE: str = "Spotify to Apple Migration Helper"
 VERSION_NUMBER: str = "0.1"
 COLOR_PALETTE: Tuple[str] = ("",)
+# Logging Constants
+LOG_FORMAT: str = "[{level}]: {message}"

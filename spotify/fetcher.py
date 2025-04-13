@@ -3,6 +3,7 @@ from typing import List, Dict, Optional
 
 from spotipy import Spotify  # type: ignore
 
+from logs import Logger
 from auth import SpotifyAuthManager
 from models import Playlist, Track, Album
 from constants import MAX_PLAYLISTS_PER_REQUEST, MAX_ALBUMS_PER_REQUEST, MAX_TRACKS_PER_REQUEST, MAX_ARTISTS_PER_REQUEST
@@ -14,12 +15,15 @@ class SpotifyDataFetcher:
     def __init__(self):
         self.auth_manager = SpotifyAuthManager().get_auth_manager()
         self.spotify = Spotify(auth_manager=self.auth_manager)
+        self.logger = Logger()
 
     def fetch_playlists(self, limit: int = MAX_PLAYLISTS_PER_REQUEST) -> List[Playlist]:
         """ Fetch the user's playlists from Spotify """
         playlists = []
         spotify_playlists = self.spotify.current_user_playlists(limit=limit)
         for playlist in spotify_playlists['items']:
+            self.logger.log("INFO", f"Fetched playlist(s) {spotify_playlists['offset']}"
+                            f"-{spotify_playlists['offset'] + limit} of {spotify_playlists['total']}")
             cover_image = self.spotify.playlist_cover_image(playlist['id'])
             name = playlist['name']
             description = playlist['description']
@@ -52,6 +56,8 @@ class SpotifyDataFetcher:
         albums = []
         spotify_albums = self.spotify.current_user_saved_albums(limit=limit)
         for album in spotify_albums['items']:
+            self.logger.log("INFO", f"Fetched album(s) {spotify_albums['offset']}"
+                            f"-{spotify_albums['offset'] + limit} of {spotify_albums['total']}")
             album = album['album']
             name = album['name']
             artists = [artist['name'] for artist in album['artists']]
@@ -82,6 +88,8 @@ class SpotifyDataFetcher:
         """ Given the output of a spotify query, parse the fields to create a list of Track objects """
         out = []
         for track in spotify_output['items']:
+            self.logger.log("INFO", f"Fetched track(s) {spotify_output['offset']}"
+                            f"-{spotify_output['offset'] + spotify_output['limit']} of {spotify_output['total']}")
             if 'track' in track.keys():
                 track = track['track']
             name = track['name']
