@@ -1,5 +1,5 @@
 """ House constants """
-from typing import List
+from typing import List, Tuple
 
 
 # SpotifyAuthManager Constants
@@ -16,10 +16,10 @@ MAX_ALBUMS_PER_REQUEST: int = MAX_PLAYLISTS_PER_REQUEST
 MAX_TRACKS_PER_REQUEST: int = 50
 MAX_ARTISTS_PER_REQUEST: int = 20
 # DataSerializer Constants
-DEFAULT_JSON_PATH = "./data/data.json"
-DEFAULT_PICKLE_PATH = "./data/data.pickle"
-DEFAULT_MARKDOWN_PATH = "./data/data.md"
-MARKDOWN_TEMPLATE = """\
+DEFAULT_JSON_PATH: str = "./data/data.json"
+DEFAULT_PICKLE_PATH: str = "./data/data.pickle"
+DEFAULT_MARKDOWN_PATH: str = "./data/data.md"
+MARKDOWN_TEMPLATE: str = """\
 # Spotify to Apple Music Migration
 
 ## Playlists:
@@ -34,3 +34,7 @@ MARKDOWN_TEMPLATE = """\
 ## Followed Artists:
 {artist_section}
 """
+# UIController Constants
+APP_TITLE: str = "Spotify to Apple Migration Helper"
+VERSION_NUMBER: str = "0.1"
+COLOR_PALETTE: Tuple[str] = ("",)

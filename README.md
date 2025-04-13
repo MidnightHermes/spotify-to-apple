@@ -182,8 +182,8 @@
 ## 🚀 AppalHack Stretch Tasks
 
 ### 🖼 UI Development (PyQt6)
-- [ ] Build login screen
-- [ ] Build data selection screen
+- [x] Build login screen
+- [x] Build data selection screen
 - [ ] Add export options screen
 - [ ] Add progress bar/logging panel
 - [ ] Final UI polish with Figma?

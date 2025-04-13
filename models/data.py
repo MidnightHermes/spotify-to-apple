@@ -76,10 +76,10 @@ class Album:
 class Data:
     """ Single data object to hold all objects """
 
-    def __init__(self, playlists: List[Playlist],
-                 albums: List[Album],
-                 liked_songs: List[Track],
-                 followed_artists: List[str]):
+    def __init__(self, playlists: Optional[List[Playlist]],
+                 albums: Optional[List[Album]],
+                 liked_songs: Optional[List[Track]],
+                 followed_artists: Optional[List[str]]):
         self.playlists = playlists
         self.albums = albums
         self.liked_songs = liked_songs

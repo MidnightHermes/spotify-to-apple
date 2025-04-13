@@ -1,0 +1,37 @@
+QLabel#h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #E6E6E6;
+}
+
+QLabel#h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #E6E6E6;
+}
+
+QLabel#h4 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #E6E6E6;
+}
+
+QLabel#p {
+    font-weight: 250;
+    color: #828282;
+}
+
+QPushButton {
+    text-align: center;
+    border-radius: 6%;
+    background-color: #EEEEEE;
+    color: #000;
+    font-weight: 300;
+    font-size: 16pt;
+}
+
+/* Inter Semi-Bold */
+* {
+    font-family: "Inter";
+    font-weight: 600;
+}
