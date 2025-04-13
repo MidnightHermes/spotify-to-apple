@@ -1,6 +1,9 @@
 """ House the SpotifyAuthManager object """
+import sys
 from spotipy.oauth2 import SpotifyOAuth  # type: ignore
+
 from constants import SPOTIFY_SCOPES
+from logs import Logger
 
 
 class SpotifyAuthManager:
@@ -18,12 +21,18 @@ class SpotifyAuthManager:
     def __init__(self):
         if not self.__class__._initialized:
             self.auth_manager = None
+            self.logger = Logger()
             self.authorize()
             self.__class__._initialized = True
 
     def authorize(self) -> None:
         """ Creates SpotifyOAuth object from spotipy to implement Authorization Code Flow """
-        self.auth_manager = SpotifyOAuth(scope=SPOTIFY_SCOPES, open_browser=self.open_browser())
+        try:
+            self.auth_manager = SpotifyOAuth(scope=SPOTIFY_SCOPES, open_browser=self.open_browser())
+            self.logger.log("INFO", "Successfully authorized")
+        except Exception as e:
+            self.logger.log("FATAL", f"Failed to authorize: {e}")
+            sys.exit(1)
 
     def get_auth_manager(self) -> SpotifyOAuth:
         """ Return the object's auth manager """

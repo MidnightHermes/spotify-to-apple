@@ -13,7 +13,7 @@ SPOTIFY_SCOPES: List[str] = [
 # SpotifyDataFetcher Constants
 MAX_PLAYLISTS_PER_REQUEST: int = 50
 MAX_ALBUMS_PER_REQUEST: int = MAX_PLAYLISTS_PER_REQUEST
-MAX_TRACKS_PER_REQUEST: int = 50
+MAX_TRACKS_PER_REQUEST: int = 100
 MAX_ARTISTS_PER_REQUEST: int = 20
 # DataSerializer Constants
 DEFAULT_JSON_PATH: str = "./data/data.json"
@@ -39,4 +39,5 @@ APP_TITLE: str = "Spotify to Apple Migration Helper"
 VERSION_NUMBER: str = "0.1"
 COLOR_PALETTE: Tuple[str] = ("",)
 # Logging Constants
-LOG_FORMAT: str = "[{level}]: {message}"
+LOG_FORMAT: str = "\r[{level}]: {message}"
+LOG_FILE_PATH: str = "./logs/log.txt"

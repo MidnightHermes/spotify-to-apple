@@ -1,5 +1,6 @@
 """ House the SpotifyDataFetcher object """
 from typing import List, Dict, Optional
+import sys
 
 from spotipy import Spotify  # type: ignore
 
@@ -13,17 +14,21 @@ class SpotifyDataFetcher:
     """ Manages fetching of data from Spotify """
 
     def __init__(self):
-        self.auth_manager = SpotifyAuthManager().get_auth_manager()
-        self.spotify = Spotify(auth_manager=self.auth_manager)
         self.logger = Logger()
+        self.auth_manager = SpotifyAuthManager().get_auth_manager()
+        try:
+            self.spotify = Spotify(auth_manager=self.auth_manager)
+        except Exception as e:
+            self.logger.log("FATAL", f"Failed to initialize Spotify object in SpotifyDataFetcher: {e}")
+            sys.exit(1)
 
     def fetch_playlists(self, limit: int = MAX_PLAYLISTS_PER_REQUEST) -> List[Playlist]:
         """ Fetch the user's playlists from Spotify """
         playlists = []
         spotify_playlists = self.spotify.current_user_playlists(limit=limit)
+        playlist_number = spotify_playlists['offset'] + 1
         for playlist in spotify_playlists['items']:
-            self.logger.log("INFO", f"Fetched playlist(s) {spotify_playlists['offset']}"
-                            f"-{spotify_playlists['offset'] + limit} of {spotify_playlists['total']}")
+            self.logger.log("INFO", f"Fetched playlist {playlist_number} of {spotify_playlists['total']}")
             cover_image = self.spotify.playlist_cover_image(playlist['id'])
             name = playlist['name']
             description = playlist['description']
@@ -31,6 +36,8 @@ class SpotifyDataFetcher:
             tracks = self.fetch_playlist_tracks(playlist['id'])
 
             playlists.append(Playlist(name, f"{description} by {author}", cover_image, tracks))
+
+            playlist_number += 1
 
         return playlists
 
@@ -55,15 +62,18 @@ class SpotifyDataFetcher:
         """ Fetch the user's saved albums from Spotify """
         albums = []
         spotify_albums = self.spotify.current_user_saved_albums(limit=limit)
+        album_number = spotify_albums['offset'] + 1
         for album in spotify_albums['items']:
-            self.logger.log("INFO", f"Fetched album(s) {spotify_albums['offset']}"
-                            f"-{spotify_albums['offset'] + limit} of {spotify_albums['total']}")
+            self.logger.log("INFO", f"Fetched album {album_number} of {spotify_albums['total']}")
             album = album['album']
             name = album['name']
             artists = [artist['name'] for artist in album['artists']]
             album_id = album['id']
             tracks = self.parse_album_tracks(name, album_id, album['tracks'], limit=limit)
+
             albums.append(Album(name, artists, album_id, tracks))
+
+            album_number += 1
 
         return albums
 
@@ -87,17 +97,22 @@ class SpotifyDataFetcher:
                           album_name: Optional[str] = None) -> List[Track]:
         """ Given the output of a spotify query, parse the fields to create a list of Track objects """
         out = []
+        track_number = spotify_output['offset'] + 1
         for track in spotify_output['items']:
-            self.logger.log("INFO", f"Fetched track(s) {spotify_output['offset']}"
-                            f"-{spotify_output['offset'] + spotify_output['limit']} of {spotify_output['total']}")
+            self.logger.log("INFO", f"Fetched track {track_number} of {spotify_output['total']}")
             if 'track' in track.keys():
                 track = track['track']
+            if not track:
+                continue
             name = track['name']
             artists = [artist['name'] for artist in track['artists']]
             # TODO: Fetch more data than album name?
             album = album_name if album_name else track['album']['name']
             track_id = track['id']
+
             out.append(Track(name, artists, album, track_id))
+
+            track_number += 1
 
         return out
 
